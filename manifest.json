@@ -1,0 +1,13 @@
+{
+    "manifest_version": 3,
+   
+    "name": "CSTimer 7-Simul Scrambles",
+    "version": "1.0.0",
+    "description": "Converts CSTimer scrambles into 7-simul notation, and gives the memo too in case you want to practice execution",
+   
+    "content_scripts": [{
+      "js": ["content.js"],
+      "matches": ["https://cstimer.net/*"]
+    }]
+   
+  }
