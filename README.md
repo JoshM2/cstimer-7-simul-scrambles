@@ -11,3 +11,10 @@ To install this extension on chrome:
 4) select the folder where you downloaded this
 
 If you need any help with this let me know!
+
+
+If you don't use A-L for 1-12 and want to change the notation:
+Go to line 50 and edit the "const l" variable with what you use instead of each letter
+
+If you never train excecution and want to get rid of the memo:
+Delete line 63

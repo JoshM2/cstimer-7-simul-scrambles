@@ -28,7 +28,25 @@ function checkEvent(){
 }
 
 const matrix = [['0','1','-1','-1','0','0','0','0','0','0','0','0','-1','0'],['0','0','0','0','0','0','0','0','0','0','0','1','0','-1'],['0','-1','0','1','0','0','0','0','0','0','0','0','0','0'],['0','0','0','0','0','0','0','0','0','0','0','0','-1','1'],['0','1','0','0','-1','0','0','0','0','0','0','0','0','0'],['-1','0','0','1','0','0','0','0','0','0','0','0','1','-1'],['0','-1','1','0','1','0','1','-1','0','0','1','0','1','0'],['1','0','0','-1','0','-1','0','0','1','1','0','-1','0','1'],['0','0','0','0','-1','0','0','1','0','0','0','0','0','0'],['0','0','0','0','0','1','0','0','-1','-1','1','0','0','0'],['0','0','0','0','0','1','0','-1','0','0','0','0','0','0'],['0','0','0','0','0','0','0','0','0','1','-1','0','0','0'],['0','0','0','0','0','-1','-1','1','0','0','-1','0','0','0'],['0','0','0','0','0','0','0','0','0','-1','0','1','0','0']]
-pins = ["all", "ALL", "UL", "UR", "DL", "DR", "ul", "ur", "dl", "dr", "U", "L", "D", "R", "\\", "/"]
+pinConversions = {
+    "UR": "UR",
+    "DR": "DR",
+    "DL": "DL",
+    "UL": "UL",
+    "UR DR": "R",
+    "DR DL": "D",
+    "DL UL": "L",
+    "UR UL": "U",
+    "DR DL UL": "ur",
+    "UR DL UL": "dr",
+    "UR DR UL": "dl",
+    "UR DR DL": "ul",
+    "UR DL": "/",
+    "DR UL": "\\",
+    "UR DR DL UL": "ALL",
+    "": "all"
+}
+// Edit this list to change the memo notation. Make sure you edit both Ls with what you use for 12 (one is at the start and one is at the end)
 const l = ['L','A','B','C','D','E','F','G','H','I','J','K','L']
 function convertScramble(s){
     let scramble = convert(s)
@@ -40,8 +58,10 @@ function convertScramble(s){
         }
         tempArray.push((x+144)%12);
     }
-    let newScramble = l[12-tempArray[1]]+l[12-tempArray[0]]+" "+l[12-tempArray[3]]+l[12-tempArray[2]]+" "+l[12-tempArray[5]]+l[12-tempArray[4]]+" "+l[12-tempArray[6]]+l[12-tempArray[7]]+" "+l[12-tempArray[8]]+l[12-tempArray[9]]+" "+l[12-tempArray[10]]+l[12-tempArray[11]]+" "+l[12-tempArray[12]]+l[12-tempArray[13]]+" "+pins[Math.floor(Math.random() * 16)]
-    newScramble += " -- "+l[tempArray[1]]+l[tempArray[0]]+" "+l[tempArray[3]]+l[tempArray[2]]+" "+l[tempArray[5]]+l[tempArray[4]]+" "+l[tempArray[6]]+l[tempArray[7]]+" "+l[tempArray[8]]+l[tempArray[9]]+" "+l[tempArray[10]]+l[tempArray[11]]+" "+l[tempArray[12]]+l[tempArray[13]]
+    let newScramble = l[12-tempArray[1]]+l[12-tempArray[0]]+" "+l[12-tempArray[3]]+l[12-tempArray[2]]+" "+l[12-tempArray[5]]+l[12-tempArray[4]]+" "+l[12-tempArray[6]]+l[12-tempArray[7]]+" "+l[12-tempArray[8]]+l[12-tempArray[9]]+" "+l[12-tempArray[10]]+l[12-tempArray[11]]+" "+l[12-tempArray[12]]+l[12-tempArray[13]]+" "+pinConversions[s.split(" ").slice(15).join(" ")];
+    //Delete the line in between these two comments to get rid of the memo
+    newScramble += " -- "+l[tempArray[1]]+l[tempArray[0]]+" "+l[tempArray[3]]+l[tempArray[2]]+" "+l[tempArray[5]]+l[tempArray[4]]+" "+l[tempArray[6]]+l[tempArray[7]]+" "+l[tempArray[8]]+l[tempArray[9]]+" "+l[tempArray[10]]+l[tempArray[11]]+" "+l[tempArray[12]]+l[tempArray[13]];
+    //Delete the line in between these two comments to get rid of the memo
     return newScramble;
 }
 
